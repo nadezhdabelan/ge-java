@@ -10,6 +10,6 @@ public interface ManagementSystem {
 
     void start();
     void setHandlers(MessageHandler... handlers);
-    void stop();
+    void stop() throws InterruptedException;
     Ack getAck();
 }

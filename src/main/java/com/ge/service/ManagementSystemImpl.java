@@ -4,6 +4,8 @@ package com.ge.service;
 import com.ge.consume.MessageGenerator;
 import com.ge.supply.MessageHandler;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * simplified system of control of generator and handlers
  */
@@ -33,10 +35,17 @@ public class ManagementSystemImpl implements ManagementSystem {
      * stop generate messages
      * stop handle messages in all registered handlers
      */
-    public void stop(){
+    public void stop() throws InterruptedException {
         messageGenerator.stop();
         messageGenerator.getHandlerList().stream()
-                .forEach(h -> h.stopHandle());
+                .forEach(h -> {
+                    try {
+                        h.stopHandle();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
+        System.exit(0);
     }
 
     /**

@@ -7,6 +7,6 @@ public interface MessageHandler {
 
     void notify(Message message);
     void startHandle();
-    void stopHandle();
+    void stopHandle() throws InterruptedException;
     String getName();
 }

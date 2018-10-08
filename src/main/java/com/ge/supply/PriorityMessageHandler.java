@@ -48,9 +48,12 @@ public class PriorityMessageHandler implements MessageHandler {
     }
 
     @Override
-    public void stopHandle() {
+    public void stopHandle() throws InterruptedException {
         isRunning.set(false);
         executor.shutdown();
+        if(executor.awaitTermination(3, TimeUnit.SECONDS)){
+            executor.shutdownNow();
+        }
     }
 
     @Override

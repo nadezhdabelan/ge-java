@@ -128,8 +128,11 @@ public class MessageGenerator implements Subject {
 
     }
 
-    public void stop() {
+    public void stop() throws InterruptedException {
         isRunning.set(false);
         executor.shutdown();
+        if(executor.awaitTermination(3, TimeUnit.SECONDS)){
+            executor.shutdownNow();
+        }
     }
 }

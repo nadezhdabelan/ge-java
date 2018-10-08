@@ -19,7 +19,7 @@ public class Main {
         managementSystem.setHandlers(handlerMessage1, handlerMessage2, handlerMessag3);
         managementSystem.start();
 
-        TimeUnit.MINUTES.sleep(1);
+        TimeUnit.SECONDS.sleep(30);
 
         managementSystem.stop();
 
