@@ -15,7 +15,7 @@ import static com.ge.dto.AcknowledgementEnum.HANDLED;
 
 public class AckImpl implements Ack {
 
-    private Set<MessageOfSystem> messageList;
+    private final Set<MessageOfSystem> messageList;
 
     public AckImpl(){
         messageList = Collections.synchronizedSet(new HashSet<MessageOfSystem>());
@@ -27,8 +27,6 @@ public class AckImpl implements Ack {
         MessageOfSystem messageOfSystem = new MessageOfSystem(message, system);
         if (HANDLED.equals(message.getStatus())) {
             messageList.remove(messageOfSystem);
-        } else if (ERROR.equals(message.getStatus())) {
-
         } else {
             messageList.add(messageOfSystem);
         }

@@ -54,7 +54,7 @@ public class MessageGenerator implements Subject {
                 }
 
                 try {
-                    TimeUnit.SECONDS.sleep(count_hours);
+                    TimeUnit.HOURS.sleep(count_hours);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
